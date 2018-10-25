@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/server/ShowcaseServerAioListener.java=UTF-8
+encoding//src/server/ShowcaseServerConfig.java=UTF-8
+encoding//src/server/ShowcaseWebsocketStarter.java=UTF-8
+encoding//src/server/ShowcaseWsMsgHandler.java=UTF-8

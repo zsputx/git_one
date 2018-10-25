@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="mysql_server.dao.UserDao">
+	<select id="findByName" parameterType="String" 
+	         resultType="mysql_server.entity.User">
+		      select  *  from user where name=#{name}
+    </select>
+    
+    <insert id="add_user"   parameterType="mysql_server.entity.User">
+          insert into user(name,password,state,score,zc_time,email)  
+             values(#{name},#{password},#{state},#{score},#{zc_time},#{email})  
+    </insert>
+    
+    <update id="update_state" parameterType="mysql_server.entity.User">
+     update user set state=#{state} where name=#{name}
+    </update>
+     <update id="update_score" parameterType="mysql_server.entity.User">
+     update user set score=#{score} where name=#{name}
+    </update>
+    
+    <delete id="delete" parameterType="String">
+     delete from  user where name=#{name}
+    </delete>
+    <select id="get_all" resultType="mysql_server.entity.User">
+		      select  name,state from user 
+    </select>
+    
+</mapper>

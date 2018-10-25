@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="mysql_server.dao.AdminDao">
+	<select id="findByCode" parameterType="String" 
+	         resultType="mysql_server.entity.Admin">
+		      select  *  from admin_info_tx where admin_code=#{code}
+    </select>
+    
+    <insert id="add_admin"   parameterType="mysql_server.entity.Admin">
+          insert into admin_info_tx(admin_code,password,name,telephone,email,enrolldate)  
+             values(#{admin_code},#{password},#{name},#{telephone},#{email},#{enrolldate})  
+    </insert>
+    
+    <update id="update" parameterType="mysql_server.entity.Admin">
+     update admin_info_tx set admin_code=#{admin_code},password=#{password},name=#{name},telephone=#{telephone},email=#{email},enrolldate=#{enrolldate} where admin_id=#{admin_id}
+    </update>
+    <delete id="delete" parameterType="Integer">
+     delete from admin_info_tx where admin_id=#{admin_id}
+    </delete>
+    
+</mapper>
