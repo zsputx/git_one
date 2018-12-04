@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>superMaker编辑器</title>
+    <meta name="keywords" content="畅游天下经典,国学，寓教于乐，国学游戏"/>
+    <meta name="description" content="superMaker编辑器,致力于发扬传承国学文化，以游戏的形式展现国学风貌，赋予游戏新生命"/>
+    <link rel="shortcut icon" href="./res/wb.ico"></link>
+    <!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
+    <meta name="viewport"
+          content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+
+
+    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            background: #fcfffa;
+            color: #fff;
+            overflow: hidden;
+            touch-action: none;
+            -ms-touch-action: none;
+            text-align: center;
+            height: 100%
+        }
+
+        canvas {
+            touch-action-delay: none;
+            touch-action: none;
+            -ms-touch-action: none;
+            margin: auto 0;
+        }
+
+        span {
+            font-family: simhei;
+            color: #000000;
+
+        }
+        body{
+            font:  15px/15px "SimHei";
+            color:snow;
+        }
+        button{
+            color:#c42b75;;
+            font: 15px/15px "SimHei";
+            border:2px solid #c42b75;
+            border-radius: 5px;
+            font-size: 15px;
+            background-color: transparent;
+            cursor: pointer;
+
+        }
+       .commboder{
+           background-color:transparent;
+           overflow: auto;
+           border: 1px solid rgba(255,250,250,0.47);
+           border-radius: 5px;
+       }
+        .par::-webkit-scrollbar {/*滚动条整体样式*/
+            width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+            height: 8px;
+        }
+        .par::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.71);
+            background: rgba(255, 237, 8, 0.63);
+        }
+        .par::-webkit-scrollbar-track {/*滚动条里面轨道*/
+            -webkit-box-shadow: inset 0 0 5px rgba(43, 43, 43, 0.77);
+            border-radius: 10px;
+            background: rgba(24, 12, 10, 0.74);
+        }
+       .cy_input_wh{
+           width:25px;
+           height:25px;
+           border-radius: 3px;
+           background-color: #0c1807;
+           border: 2px solid #ff6c18;
+           color: orange;
+       }
+
+        .upflie {
+
+            width: 62px;
+
+            height: 24px;
+
+            text-align: center;
+
+            vertical-align: middle;
+
+            border-radius: 5px;
+
+            -webkit-border-radius: 2px;
+
+            -moz-border-radius: 2px;
+
+            color: #fff;
+
+            cursor: pointer;
+
+            background: #4387CD;
+
+            border: 1px solid #4387CD;
+
+            outline: none;
+
+            position: relative;
+
+            display: inline-block;
+
+            overflow: hidden;
+
+            text-decoration: none;
+
+            line-height: 28px;
+
+        }
+
+
+
+        .upflie input {
+
+            position: absolute;
+
+            font-size: 10px;
+
+            width: 200px;
+
+            border: none;
+
+            cursor: pointer;
+
+            right: 0;
+
+            top: 0;
+            -moz-opacity: 0;
+            -ms-opacity: 0;
+            -webkit-opacity: 0;
+            opacity: 0;
+
+        }
+
+
+
+        a:hover {
+
+            display: inline-block;
+
+            color: #fff;
+
+            text-decoration: none;
+
+            cursor: pointer!important;
+
+            opacity: 0.8;
+            -moz-opacity: 0.8;
+            -ms-opacity: 0.8;
+            -webkit-opacity: 0.8;
+        }
+
+
+
+        .upflie :hover {
+
+            display: inline-block;
+
+            overflow: hidden;
+
+            color: #fff!important;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+        }
+
+        .res_list{
+        background-color: rgba(0, 0, 0, 0.52);
+        border: 2px solid #95fffa;
+            width:150px;
+            height:20px;
+        }
+        .res_list_m{
+            white-space: nowrap;  /*强制span不换行*/
+            display: inline-block;  /*将span当做块级元素对待*/
+            width:85px;  /*限制宽度*/
+            overflow: hidden;  /*超出宽度部分隐藏*/
+            text-overflow: ellipsis;  /*超出部分以点号代替*/
+            line-height: 0.9;  /*数字与之前的文字对齐*/
+
+          color: #7f84cd;
+          /*width:50px;*/
+            height: 20px;
+            background-color: transparent;
+            margin-left: 5px;
+        }
+        .res_list_p{
+            white-space: nowrap;  /*强制span不换行*/
+            display: inline-block;  /*将span当做块级元素对待*/
+            width:85px;  /*限制宽度*/
+            overflow: hidden;  /*超出宽度部分隐藏*/
+            text-overflow: ellipsis;  /*超出部分以点号代替*/
+            line-height: 0.9;  /*数字与之前的文字对齐*/
+
+            color: #abcd18;
+            height: 20px;
+            background-color: transparent;
+            margin-left: 5px;
+        }
+
+        .res_list_k{
+            width: 150px;
+            height:22px;
+            background-color: transparent;
+            border: 1px solid yellowgreen;
+            text-align: left;
+        }
+
+    </style>
+
+
+</head>
+<!--c42b75---->
+<script type="text/javascript" src="./lib/jquery1.9.js"></script>
+<body style="overflow: scroll;background:url('./res/bj5.jpg');background-size: cover">
+<div  class="par" id="super" style="position: relative;left:145px;top:75px;width: 720px;height: 500px;overflow:scroll;border: 1px solid rgba(255,250,250,0.47);background-color: transparent;border-radius: 5px"></div>
+<div id="time_line" style="position: absolute; border-radius:5px;top:5px;left:10px;width:1000px;height:60px;background-color: transparent"></div>
+<div id="tool_a" style="position: relative;border-radius:5px;top:-425px;width: 135px;left:5px;height: 500px;background-color: transparent;border: 1px solid rgba(255,250,250,0.27)">
+    <form  id="form_tj" action="../upload.do"  enctype="multipart/form-data" method="post">
+        <input class="upflie" id="file_up" type="file"  name="file"  /><br>
+        <button type="button" value="上传资源" onclick="doUpload()">上传资源</button>
+        <span id="messageTip" hidden="true"></span>
+    </form><br>
+    <button id="play_bt" onclick="player_action()">播放</button>
+    <button id="write_bt" onclick="write_action()">生成js</button><br><br>
+    舞台<br>
+    宽<input class="cy_input_wh" value="320" type="text" id="cy_input_width"  onblur="cy_set_stage()"/>高<input  class="cy_input_wh" value="568" type="text" id="cy_input_height" onblur="cy_set_stage()"/><br>
+       背景色
+    <input class="cy_input_wh" type="color"id="cy_select_color" value="#fff000" onchange="change_color()" /><br>
+    <button  value="显示网格" id="cy_wg_dis" onclick="change_wg(this);">显示网格</button><br>
+    网格宽<input class="cy_input_wh" type="text" value="20" onblur="cy_wg_dx(this)" /><br>
+    <button  id="cy_auto_play" onclick="cy_auto_paly(this)" >自动播放</button><br>
+    X<input type="text" class="cy_input_wh" value="100" id="cy_x_val" onblur="cy_set_x(this);">Y<input type="text" class="cy_input_wh" value="100" id="cy_y_val" onblur="cy_set_y(this);"><br>
+    角度值<input type="text" class="cy_input_wh" value="0" id="cy_rotation_val" onblur="cy_set_rotation(this);"><br>
+    透明度<input type="text" class="cy_input_wh" value="1" id="cy_alpha_val" onblur="cy_set_alpha(this);"><br>
+    TINT值<input class="cy_input_wh" type="color"  value="#ffffff" id="cy_tint_val" onchange="cy_set_tint(this);"><br>
+    ScaleX<input type="text" class="cy_input_wh" value="1" id="cy_sx_val" onblur="cy_set_sx(this);"><br>
+    ScaleY<input type="text" class="cy_input_wh" value="1" id="cy_sy_val" onblur="cy_set_sy(this);"><br>
+    元件宽<input type="text" class="cy_input_wh" value="100" id="cy_w_val" onblur="cy_set_w(this);"><br>
+    元件高<input type="text" class="cy_input_wh" value="100" id="cy_h_val" onblur="cy_set_h(this);">
+
+
+
+
+</div>
+
+<script type="text/javascript" src="./lib/phaser.min.js"></script>
+<script type="text/javascript" src="./lib/config.js"></script>
+<script type="text/javascript" src="./lib/upload.js"></script>
+<script type="text/javascript" src="./lib/gameState.js"></script>
+<script type="text/javascript" src="./lib/loadState.js"></script>
+<script type="text/javascript" src="./lib/edit.js"></script>
+<script type="text/javascript" src="./lib/util.js"></script>
+<script type="text/javascript" src="./lib/main.js"></script>
+<div id="event_tool"  class="commboder" style=";width:320px;height: 568px;position: absolute;top:20px;left:1020px;" >
+   <div class="commboder" style="text-align: center;width:80%">
+    事件面板
+    <div class="commboder" id="event_action" style="height:260px;text-align: center">
+
+
+    </div>
+    对象列表
+    <div class="commboder" id="all_object" style="height:280px;text-align: center">
+
+
+    </div>
+   </div>
+    <div id="draw_tool" class="commboder" style="position: absolute;text-align:center;left:250px;top:20px;width:45px;height: 568px;">
+       工具
+    </div>
+
+</div>
+<iframe id="player" style="display: none;width:320px;height: 568px;position: absolute;top:20px;left:1020px;background-color: orange" src="../static/player/index.html";></iframe>
+<div class="par"  id="res_lib" style="border:1px solid rgba(255,250,250,0.47);border-radius: 10px;text-align: center; overflow:hidden;width:150px;height: 500px;position: absolute;top:75px;left:870px;background-color:transparent">
+    资源库<br>
+    <div class="par" id="res_libs" style="width:145px;height:300px;background-color:transparent;overflow: scroll;border: 1px solid rgba(255,250,250,0.47)"></div>
+    预览<button style="width:80px;"  onclick="res_to_stage();" value="添加到舞台" >添加到舞台</button> <br>
+    <img id="pre_look" style="width:140px;height: 140px;background-color: transparent">
+    </img>
+    <audio id="pre_listen" controls="controls" style="width:140px;height: 140px;background-color: transparent;display: none"></audio>
+</div>
+</body>
+</html> 

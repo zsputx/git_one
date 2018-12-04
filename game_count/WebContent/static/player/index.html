@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>演示</title>
+    <meta name="keywords" content="畅游天下经典,国学，寓教于乐，国学游戏"/>
+    <meta name="description" content="superMaker编辑器,致力于发扬传承国学文化，以游戏的形式展现国学风貌，赋予游戏新生命"/>
+    <link rel="shortcut icon" href="./res/wb.ico"></link>
+    <!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
+    <meta name="viewport"
+          content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+
+
+    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            background: #fcfffa;
+            color: #fff;
+            overflow: hidden;
+            touch-action: none;
+            -ms-touch-action: none;
+            text-align: center;
+            height: 100%
+        }
+
+        canvas {
+            touch-action-delay: none;
+            touch-action: none;
+            -ms-touch-action: none;
+            margin: auto 0;
+        }
+
+        span {
+            font-family: simhei;
+            color: #000000;
+
+        }
+
+        .par::-webkit-scrollbar {/*滚动条整体样式*/
+            width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+            height: 8px;
+        }
+        .par::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.71);
+            background: rgba(255, 237, 8, 0.63);
+        }
+        .par::-webkit-scrollbar-track {/*滚动条里面轨道*/
+            -webkit-box-shadow: inset 0 0 5px rgba(43, 43, 43, 0.77);
+            border-radius: 10px;
+            background: rgba(24, 12, 10, 0.74);
+        }
+
+
+        .upflie {
+
+            width: 62px;
+
+            height: 24px;
+
+            text-align: center;
+
+            vertical-align: middle;
+
+            border-radius: 5px;
+
+            -webkit-border-radius: 2px;
+
+            -moz-border-radius: 2px;
+
+            color: #fff;
+
+            cursor: pointer;
+
+            background: #4387CD;
+
+            border: 1px solid #4387CD;
+
+            outline: none;
+
+            position: relative;
+
+            display: inline-block;
+
+            overflow: hidden;
+
+            text-decoration: none;
+
+            line-height: 28px;
+
+        }
+
+
+
+        .upflie input {
+
+            position: absolute;
+
+            font-size: 10px;
+
+            width: 200px;
+
+            border: none;
+
+            cursor: pointer;
+
+            right: 0;
+
+            top: 0;
+            -moz-opacity: 0;
+            -ms-opacity: 0;
+            -webkit-opacity: 0;
+            opacity: 0;
+
+        }
+
+
+
+        a:hover {
+
+            display: inline-block;
+
+            color: #fff;
+
+            text-decoration: none;
+
+            cursor: pointer!important;
+
+            opacity: 0.8;
+            -moz-opacity: 0.8;
+            -ms-opacity: 0.8;
+            -webkit-opacity: 0.8;
+        }
+
+
+
+        .upflie :hover {
+
+            display: inline-block;
+
+            overflow: hidden;
+
+            color: #fff!important;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+        }
+
+    </style>
+
+
+</head>
+<script type="text/javascript" src="./lib/jquery1.9.js"></script>
+<body style="overflow: auto">
+<div  class="par" id="super" ></div>
+<script type="text/javascript" src="./lib/jsfile.js"></script>
+<script type="text/javascript" src="./lib/phaser.min.js"></script>
+<script type="text/javascript" src="./lib/game.js"></script>
+<script type="text/javascript" src="./lib/util.js"></script>
+
+
+
+</body>
+</html> 

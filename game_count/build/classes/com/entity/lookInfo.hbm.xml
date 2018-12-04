@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-6-30 11:56:40 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.entity.lookInfo" table="look_info" catalog="game" optimistic-lock="version">
+        <id name="infoId" type="int">
+            <column name="info_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="gameName" type="string">
+            <column name="game_name" length="200" />
+        </property>
+        <property name="lookerName" type="string">
+            <column name="looker_name" length="200" />
+        </property>
+        <property name="adName" type="string">
+            <column name="ad_name" length="200" />
+        </property>
+        <property name="lookTime" type="string">
+            <column name="look_time" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>
